@@ -22,9 +22,11 @@ class FilmografiaSerializer(serializers.ModelSerializer):
         
 # SERIALIZERS DO PROJETO FINAL
 class UserSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(source='first_name')
+    
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id', 'username', 'email', 'name']
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:

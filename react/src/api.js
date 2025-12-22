@@ -1,6 +1,6 @@
 const BASE = 'http://127.0.0.1:8000';
 
-async function request(path, options = {}) {
+export async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
@@ -8,7 +8,6 @@ async function request(path, options = {}) {
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
-
 
 export const users = {
   list: () => request('/users/'),
@@ -19,7 +18,6 @@ export const users = {
   remove: (id) => request(`/users/${id}/`, { method: 'DELETE' }),
 };
 
-
 export const posts = {
   list: () => request('/posts/'),
   get: (id) => request(`/posts/${id}/`),
@@ -28,7 +26,6 @@ export const posts = {
   patch: (id, data) => request(`/posts/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   remove: (id) => request(`/posts/${id}/`, { method: 'DELETE' }),
 };
-
 
 export const comments = {
   list: () => request('/comments/'),
@@ -48,7 +45,6 @@ export const todos = {
   remove: (id) => request(`/todos/${id}/`, { method: 'DELETE' }),
 };
 
-
 export const albums = {
   list: () => request('/albums/'),
   get: (id) => request(`/albums/${id}/`),
@@ -58,7 +54,6 @@ export const albums = {
   remove: (id) => request(`/albums/${id}/`, { method: 'DELETE' }),
 };
 
-
 export const photos = {
   list: () => request('/photos/'),
   get: (id) => request(`/photos/${id}/`),
@@ -67,5 +62,3 @@ export const photos = {
   patch: (id, data) => request(`/photos/${id}/`, { method: 'PATCH', body: JSON.stringify(data) }),
   remove: (id) => request(`/photos/${id}/`, { method: 'DELETE' }),
 };
-
-export { request };
