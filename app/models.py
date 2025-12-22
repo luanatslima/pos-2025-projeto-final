@@ -25,4 +25,4 @@ class Filmografia(models.Model):
     def __str__(self):
         return f"{self.diretor.nome} - {self.filme.titulo} ({self.papel})"
     
-    
+
