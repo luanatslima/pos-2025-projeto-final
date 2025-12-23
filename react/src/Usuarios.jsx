@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { users } from './api';   // agora usamos o objeto users direto
+import { users } from './api'; 
 import './styles.css';
 
 export default function Usuarios() {
   const [items, setItems] = useState([]);
-  const [form, setForm] = useState({ username: '', email: '', first_name: '' });
+  const [form, setForm] = useState({ username: '', email: '', name: '' });
 
   const load = async () => {
     try {
@@ -19,7 +19,7 @@ export default function Usuarios() {
     e.preventDefault();
     try {
       await users.create(form);
-      setForm({ username: '', email: '', first_name: '' });
+      setForm({ username: '', email: '', name: '' });
       load();
     } catch (err) {
       alert(`Erro ao criar usuário: ${err.message}`);
@@ -44,15 +44,15 @@ export default function Usuarios() {
         />
         <input
           placeholder="Nome"
-          value={form.first_name}
-          onChange={(e) => setForm({ ...form, first_name: e.target.value })}
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
         <button type="submit">Criar</button>
       </form>
       <ul>
         {items.map(u => (
           <li key={u.id}>
-            #{u.id} {u.username} — {u.email} {u.first_name && `(${u.first_name})`}
+            #{u.id} {u.username} — {u.email} {u.name && `(${u.name})`}
           </li>
         ))}
       </ul>
