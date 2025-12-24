@@ -14,18 +14,22 @@ header {
 nav {
   background: #ac9dff;
   color: white;
-  padding: 0.5rem;
+  padding: 0.8rem;
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 1.2rem;
   font-weight: bold;
+  justify-content: left;
 }
 
 nav button {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.8rem;
   border-radius: 4px;
+  flex: 1 1 auto;
+  min-width: 100px;
 }
 
 nav button:hover {
@@ -34,14 +38,16 @@ nav button:hover {
 
 .card {
   background: white;
-  margin: 1rem;
+  margin: 1rem auto;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  max-width: 800px;
 }
 
 .row {
   display: flex;
+  flex-wrap: wrap; 
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -50,6 +56,8 @@ input, button {
   padding: 0.5rem;
   border-radius: 4px;
   border: 1px solid #ccc;
+  flex: 1 1 auto; 
+  min-width: 120px;
 }
 
 button {
@@ -57,8 +65,53 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  flex: 0 0 auto; 
+  font-weight: bold;
 }
 
 button:hover {
   background: #357ab8;
+}
+
+li a{
+  text-decoration: none;
+  color: #483c8bff;
+  font-weight: bold;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  input, button {
+    width: 100%;
+  }
+
+  .card {
+    margin: 1rem;
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+
+  nav button {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
 }
