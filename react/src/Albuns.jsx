@@ -94,7 +94,7 @@ export default function Albuns() {
               </>
             ) : (
               <>
-                <span>#{a.id} {a.title}</span>
+                <span>{a.id} - {a.title}</span>
                 <button onClick={() => startEdit(a)}>Editar</button>
               </>
             )}

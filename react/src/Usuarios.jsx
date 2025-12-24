@@ -41,7 +41,7 @@ export default function Usuarios() {
   return (
     <div className="card">
       <h2>Usuários</h2>
-      {/* Formulário de criação */}
+
       <form onSubmit={create} className="row">
         <input
           placeholder="Username"
@@ -61,7 +61,6 @@ export default function Usuarios() {
         <button type="submit">Criar</button>
       </form>
 
-      {/* Lista com edição */}
       <ul>
         {items.map(u => (
           <li key={u.id} className="row">
@@ -84,7 +83,7 @@ export default function Usuarios() {
               </>
             ) : (
               <>
-                <span>#{u.id} {u.username} — {u.email} {u.first_name && `(${u.first_name})`}</span>
+                <span>{u.id} - {u.username} — {u.email} {u.first_name && `(${u.first_name})`}</span>
                 <button onClick={() => startEdit(u)}>Editar</button>
               </>
             )}

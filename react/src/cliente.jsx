@@ -94,7 +94,7 @@ export default function Todos() {
               </>
             ) : (
               <>
-                <span>{t.title}</span> — <strong>{t.completed ? 'OK' : 'NOT'}</strong>
+                <span>{t.id} - {t.title}</span> — <strong>{t.completed ? 'OK' : 'NOT'}</strong>
                 <button onClick={() => startEdit(t)}>Editar</button>
               </>
             )}

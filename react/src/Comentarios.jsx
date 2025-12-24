@@ -113,7 +113,7 @@ export default function Comentarios() {
               </>
             ) : (
               <>
-                <span>#{c.id} {c.name} — {c.body}</span>
+                <span>{c.id} - {c.name} — {c.body}</span>
                 <button onClick={() => startEdit(c)}>Editar</button>
               </>
             )}

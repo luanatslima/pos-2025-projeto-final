@@ -76,7 +76,7 @@ export default function Fotos() {
               </>
             ) : (
               <>
-                <span>#{f.id} {f.title}</span> — <a href={f.url} target="_blank" rel="noreferrer">Ver Foto</a>
+                <span>{f.id} - {f.title}</span> — <button onClick={() => window.open(f.url, '_blank', 'noopener,noreferrer')}>Visualizar Foto</button>
                 <button onClick={() => startEdit(f)}>Editar</button>
               </>
             )}

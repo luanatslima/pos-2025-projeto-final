@@ -60,7 +60,7 @@ export default function Posts() {
               </>
             ) : (
               <>
-                <span>#{p.id} {p.title} — {p.body}</span>
+                <span>{p.id} - {p.title} — {p.body}</span>
                 <button onClick={() => startEdit(p)}>Editar</button>
               </>
             )}
