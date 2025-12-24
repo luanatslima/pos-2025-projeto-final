@@ -5,6 +5,8 @@ import './styles.css';
 export default function Posts() {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState({ title: '', body: '', user: 1 });
+  const [editingId, setEditingId] = useState(null);
+  const [draft, setDraft] = useState({ title: '', body: '', user: 1 });
 
   const load = async () => {
     const data = await request('/posts/');
@@ -15,6 +17,22 @@ export default function Posts() {
     e.preventDefault();
     await request('/posts/', { method: 'POST', body: JSON.stringify(form) });
     setForm({ title: '', body: '', user: 1 });
+    load();
+  };
+
+  const startEdit = (p) => {
+    setEditingId(p.id);
+    setDraft({ title: p.title, body: p.body, user: p.user });
+  };
+
+  const cancelEdit = () => {
+    setEditingId(null);
+    setDraft({ title: '', body: '', user: 1 });
+  };
+
+  const saveEdit = async () => {
+    await request(`/posts/${editingId}/`, { method: 'PATCH', body: JSON.stringify(draft) });
+    cancelEdit();
     load();
   };
 
@@ -31,11 +49,24 @@ export default function Posts() {
       </form>
       <ul>
         {items.map(p => (
-          <li key={p.id}>#{p.id} {p.title} — {p.body}</li>
+          <li key={p.id} className="row">
+            {editingId === p.id ? (
+              <>
+                <input value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} />
+                <input value={draft.body} onChange={(e) => setDraft({ ...draft, body: e.target.value })} />
+                <input type="number" value={draft.user} onChange={(e) => setDraft({ ...draft, user: Number(e.target.value) })} />
+                <button onClick={saveEdit}>Salvar</button>
+                <button onClick={cancelEdit} className="ghost">Cancelar</button>
+              </>
+            ) : (
+              <>
+                <span>#{p.id} {p.title} — {p.body}</span>
+                <button onClick={() => startEdit(p)}>Editar</button>
+              </>
+            )}
+          </li>
         ))}
       </ul>
     </div>
   );
 }
-
-

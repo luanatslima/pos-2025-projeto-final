@@ -32,7 +32,23 @@ export default function Fotos() {
       </form>
       <ul>
         {items.map(f => (
-          <li key={f.id}>#{f.id} {f.title} — <a href={f.url} target="_blank" rel="noreferrer">Ver Foto</a></li>
+          <li key={f.id} className="row">
+            {editingId === f.id ? (
+              <>
+                <input value={draft.title} onChange={(e) => setDraft({ ...draft, title: e.target.value })} />
+                <input value={draft.url} onChange={(e) => setDraft({ ...draft, url: e.target.value })} />
+                <input value={draft.thumbnailUrl} onChange={(e) => setDraft({ ...draft, thumbnailUrl: e.target.value })} />
+                <input type="number" value={draft.album} onChange={(e) => setDraft({ ...draft, album: Number(e.target.value) })} />
+                <button onClick={saveEdit}>Salvar</button>
+                <button onClick={cancelEdit} className="ghost">Cancelar</button>
+              </>
+            ) : (
+              <>
+                <span>#{f.id} {f.title}</span> — <a href={f.url} target="_blank" rel="noreferrer">Ver Foto</a>
+                <button onClick={() => startEdit(f)}>Editar</button>
+              </>
+            )}
+          </li>
         ))}
       </ul>
     </div>
